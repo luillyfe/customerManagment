@@ -3,20 +3,19 @@ import { NgModule } from '@angular/core';
 import {RouterModule} from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { CustomerComponent } from './customer/customer.component';
+import {CustomerModule} from './customer/customer.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CustomerComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
-      { path: 'customer', component: CustomerComponent },
       { path: '', redirectTo: 'customer', pathMatch: 'full' },
       { path: '**', redirectTo: 'customer', pathMatch: 'full' }
-    ])
+    ]),
+    CustomerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
