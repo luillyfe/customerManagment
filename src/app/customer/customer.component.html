@@ -15,7 +15,7 @@
         <tr *ngFor="let customer of customers">
           <th scope="row">{{ customer.name.first }} {{ customer.name.last }}</th>
           <td> <p>Birthday: </p> {{ customer.birthday | date:'MMM, dd' }}</td>
-          <td> <p>Gender: </p> {{ customer.gender }}</td> <!-- TODO: gender pipe -->
+          <td> <p>Gender: </p> {{ customer.gender | gender }}</td>
           <td> <p>Last contact: </p> {{ customer.lastContact | date:'MMM, dd' }}</td>
           <td> <p>Life time: </p> {{ customer.customerLifetimeValue | date:'MMM, dd' }}</td>
         </tr>

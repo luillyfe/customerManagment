@@ -4,6 +4,7 @@ import {RouterModule} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 
 import {CustomerComponent} from './customer.component';
+import { GenderPipe } from './gender.pipe';
 
 @NgModule({
   imports: [
@@ -13,6 +14,6 @@ import {CustomerComponent} from './customer.component';
       { path: 'customer', component: CustomerComponent },
     ])
   ],
-  declarations: [CustomerComponent]
+  declarations: [CustomerComponent, GenderPipe]
 })
 export class CustomerModule { }
