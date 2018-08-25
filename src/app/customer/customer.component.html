@@ -1,3 +1,26 @@
-<p>
-  customer works!
-</p>
+<div class="card">
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-narrow-sm">
+        <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Birthday</th>
+          <th scope="col">Gender</th>
+          <th scope="col">Last contact</th>
+          <th scope="col">Life time</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let customer of customers">
+          <th scope="row">{{ customer.name.first }} {{ customer.name.last }}</th>
+          <td> <p>Birthday: </p> {{ customer.birthday | date:'MMM, dd' }}</td>
+          <td> <p>Gender: </p> {{ customer.gender }}</td> <!-- TODO: gender pipe -->
+          <td> <p>Last contact: </p> {{ customer.lastContact | date:'MMM, dd' }}</td>
+          <td> <p>Life time: </p> {{ customer.customerLifetimeValue | date:'MMM, dd' }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

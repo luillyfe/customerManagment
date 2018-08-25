@@ -9,7 +9,7 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class CustomerService {
-  private customerURl: 'assets/customers.json';
+  private customerURl = 'assets/customers.json';
 
   constructor(private http: HttpClient) { }
 

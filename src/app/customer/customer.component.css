@@ -1,0 +1,32 @@
+.table-narrow-sm tbody p {
+  display: none;
+  margin-bottom: 0;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .table-narrow-sm thead {
+    display: none;
+  }
+
+  .table-narrow-sm td, .table-narrow-sm th {
+    display: block;
+  }
+
+  .table-narrow-sm td {
+    border: 0;
+  }
+
+  .table-narrow-sm td {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .table-narrow-sm tr td:last-child {
+    margin-bottom: 10px;
+  }
+
+  .table-narrow-sm tbody p {
+    display: inline-block;
+    width: 100px;
+  }
+}
