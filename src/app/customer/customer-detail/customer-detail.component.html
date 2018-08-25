@@ -1,0 +1,16 @@
+<div class="card"  *ngIf="customer">
+  <div class="card-header">
+    <span>{{ customer.name.first }} {{ customer.name.last }}</span>
+    <button class='btn btn-outline-success' (click)='goBack()'>
+      <i class='fa fa-chevron-left'></i> Go back
+    </button>
+  </div>
+  <div class="card-body">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><span>Birthday: </span> {{ customer.birthday | date:'MMM, dd, yyyy' }}</li>
+      <li class="list-group-item"><span>Gender: </span> {{ customer.gender | gender }}</li>
+      <li class="list-group-item"><span>Last contact: </span> {{ customer.lastContact | date:'MMM, dd, yyyy' }}</li>
+      <li class="list-group-item"><span>Life time: </span> {{ customer.customerLifetimeValue | date:'MMM, dd, yyyy' }}</li>
+    </ul>
+  </div>
+</div>

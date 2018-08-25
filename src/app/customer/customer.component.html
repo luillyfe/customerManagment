@@ -13,11 +13,12 @@
         </thead>
         <tbody>
         <tr *ngFor="let customer of customers">
-          <th scope="row">{{ customer.name.first }} {{ customer.name.last }}</th>
-          <td> <p>Birthday: </p> {{ customer.birthday | date:'MMM, dd' }}</td>
-          <td> <p>Gender: </p> {{ customer.gender | gender }}</td>
+          <th scope="row">
+            <a [routerLink]="['/customers', customer.customerID]">
+              {{ customer.name.first }} {{ customer.name.last }}
+            </a>
+          </th>
           <td> <p>Last contact: </p> {{ customer.lastContact | date:'MMM, dd' }}</td>
-          <td> <p>Life time: </p> {{ customer.customerLifetimeValue | date:'MMM, dd' }}</td>
         </tr>
         </tbody>
       </table>

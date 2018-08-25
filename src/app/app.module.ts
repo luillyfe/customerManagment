@@ -12,8 +12,8 @@ import {CustomerModule} from './customer/customer.module';
   imports: [
     BrowserModule,
     RouterModule.forRoot([
-      { path: '', redirectTo: 'customer', pathMatch: 'full' },
-      { path: '**', redirectTo: 'customer', pathMatch: 'full' }
+      { path: '', redirectTo: 'customers', pathMatch: 'full' },
+      { path: '**', redirectTo: 'customers', pathMatch: 'full' }
     ]),
     CustomerModule
   ],

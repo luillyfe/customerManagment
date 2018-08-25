@@ -5,15 +5,17 @@ import {HttpClientModule} from '@angular/common/http';
 
 import {CustomerComponent} from './customer.component';
 import { GenderPipe } from './gender.pipe';
+import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
     RouterModule.forChild([
-      { path: 'customer', component: CustomerComponent },
+      { path: 'customers', component: CustomerComponent },
+      { path: 'customers/:id', component: CustomerDetailComponent },
     ])
   ],
-  declarations: [CustomerComponent, GenderPipe]
+  declarations: [CustomerComponent, GenderPipe, CustomerDetailComponent]
 })
 export class CustomerModule { }

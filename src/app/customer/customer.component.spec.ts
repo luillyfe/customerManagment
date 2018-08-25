@@ -5,6 +5,7 @@ import { CustomerComponent } from './customer.component';
 import {Pipe, PipeTransform} from '@angular/core';
 import {CustomerService} from './customer.service';
 import {of} from 'rxjs';
+import {RouterTestingModule} from '@angular/router/testing';
 
 @Pipe({name: 'gender'})
 class MockPipe implements PipeTransform {
@@ -22,6 +23,7 @@ describe('CustomerComponent', () => {
   beforeEach(async(() => {
     customerServiceSpy = jasmine.createSpyObj('HttpClient', ['getCustomers']);
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule.withRoutes([])],
       declarations: [ CustomerComponent, MockPipe ],
       providers: [
         { provide: CustomerService, useValue: customerServiceSpy }

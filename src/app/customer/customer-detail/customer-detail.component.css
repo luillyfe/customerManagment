@@ -1,0 +1,33 @@
+.card {
+  background-color: #FCFEFC;
+  border-color: #87BBA2;
+  color: #2d3c2d;
+}
+
+.card-header {
+  border-bottom-color: #87BBA2;
+}
+
+.card th {
+  border-color: #87BBA2;
+}
+
+.list-group-item {
+  border-top-color: #87BBA2;
+}
+
+span {
+  display: inline-block;
+  min-width: 100px;
+}
+
+.btn-outline-success {
+  border-color: #87BBA2;
+  color: #2d3c2d;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .card-header span {
+    margin-right: 55px;
+  }
+}
