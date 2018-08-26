@@ -28,6 +28,6 @@ span {
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
   .card-header span {
-    margin-right: 55px;
+    margin-right: 90px;
   }
 }

@@ -1,0 +1,53 @@
+<div class="card" *ngIf="customer">
+  <div class="card-body">
+    <form novalidate #customerForm="ngForm">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" [(ngModel)]="customer.name.first" name="firstName" class="form-control"
+               id="firstName" aria-describedby="firstName" placeholder="Enter name"
+               #name="ngModel" required>
+        <div *ngIf="name.invalid && (name.dirty || name.touched)"
+             class="alert alert-danger">
+
+          <div *ngIf="name.errors.required">
+            First name is required.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" [(ngModel)]="customer.name.last" name="lasttName" class="form-control"
+               id="lastName" aria-describedby="lastName" placeholder="Enter last name"
+               #last="ngModel" required>
+        <div *ngIf="last.invalid && (last.dirty || last.touched)"
+             class="alert alert-danger">
+
+          <div *ngIf="last.errors.required">
+            Last name is required.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="birthday">Birthday</label> <!-- TODO: make date input -->
+        <input type="text" [(ngModel)]="customer.birthday" name="birthday" class="form-control" id="birthday" aria-describedby="birthday" placeholder="Enter birthday">
+      </div>
+      <div class="form-group">
+        <label for="gender">Gender</label> <!-- TODO: make radio input -->
+        <input type="text" [(ngModel)]="customer.gender" name="gender" class="form-control" id="gender" aria-describedby="gender" placeholder="Enter gender">
+      </div>
+      <div class="form-group">
+        <label for="lastContact">Last contact</label>
+        <input type="text" [(ngModel)]="customer.lastContact" name="lastContact" class="form-control" id="lastContact" aria-describedby="lastContact" readonly>
+      </div>
+      <div class="form-group">
+        <label for="customerLifetimeValue">Life time value</label>
+        <input type="text" [(ngModel)]="customer.customerLifetimeValue" name="customerLifetimeValue" class="form-control"
+               id="customerLifetimeValue" aria-describedby="customerLifetimeValue" placeholder="Enter life time value"
+        readonly>
+      </div>
+    </form>
+  </div>
+  <div class="card-footer">
+    <button class="btn btn-primary" type="button" (click)="save()" [disabled]="!isValid()">Save</button>
+  </div>
+</div>

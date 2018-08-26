@@ -15,7 +15,7 @@ import {CustomerModule} from './customer/customer.module';
       { path: '', redirectTo: 'customers', pathMatch: 'full' },
       { path: '**', redirectTo: 'customers', pathMatch: 'full' }
     ]),
-    CustomerModule
+    CustomerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,47 @@
+.card {
+  background-color: #FCFEFC;
+  border-color: #87BBA2;
+  color: #2d3c2d;
+}
+
+input {
+  border-color: #87BBA2;
+}
+
+::placeholder {
+  color: #2d3c2d;
+  opacity: 1;
+}
+
+.form-control:focus {
+  border-color: #87BBA2;
+  box-shadow: 0 0 0 0.2rem rgba(14, 88, 44, 0.25);
+}
+
+.form-control:disabled, .form-control[readonly] {
+  background-color: #FCFEFC;
+}
+
+button {
+  color: #2d3c2d;
+  background-color: #FCFEFC;
+  border-color: #87BBA2;
+}
+
+button:disabled, button[disabled] {
+  border: 1px solid #2d3c2d;
+  background-color: #2d3c2d;
+  color: #FCFEFC;
+}
+
+input:read-only, input[readonly] {
+  pointer-events: none;
+  background-color: #87BBA2!important;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  label {
+    margin-left: 13px;
+  }
+}
+

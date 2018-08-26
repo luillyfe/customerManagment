@@ -26,4 +26,8 @@ export class CustomerDetailComponent implements OnInit {
     this.router.navigate(['customers']);
   }
 
+  edit(id: number) {
+    this.router.navigate(['customers', id, 'edit']);
+  }
+
 }

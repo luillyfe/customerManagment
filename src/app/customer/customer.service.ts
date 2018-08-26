@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import {ICustomer} from './customer';
@@ -21,5 +21,9 @@ export class CustomerService {
     return this.getCustomers().pipe(
       map(customers => customers.find(customer => customer.customerID === id))
     );
+  }
+
+  save(id: number) {
+    return of('success');
   }
 }

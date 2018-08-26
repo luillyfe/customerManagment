@@ -3,16 +3,24 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {Router, Routes} from '@angular/router';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {Location} from '@angular/common';
+import {Component} from '@angular/core';
 
 import { CustomerDetailComponent } from './customer-detail.component';
-import {CustomerComponent} from '../customer.component';
 import {GenderPipe} from '../gender.pipe';
 
+@Component({ template: '' })
+class MockEditComponent {}
+
+@Component({ template: '' })
+class MockComponent {}
+
 const routes: Routes = [
-  { path: 'customers', component: CustomerComponent },
+  { path: 'customers', component: MockComponent },
   { path: 'customers/:id', component: CustomerDetailComponent },
+  { path: 'customers/:id/edit', component: MockEditComponent },
   { path: '**', redirectTo: 'customers', pathMatch: 'full' }
 ];
+const id = 3;
 describe('CustomerDetailComponent', () => {
   let component: CustomerDetailComponent;
   let fixture: ComponentFixture<CustomerDetailComponent>;
@@ -24,7 +32,12 @@ describe('CustomerDetailComponent', () => {
         HttpClientTestingModule,
         RouterTestingModule.withRoutes(routes)
       ],
-      declarations: [ GenderPipe, CustomerComponent, CustomerDetailComponent ],
+      declarations: [
+        GenderPipe,
+        MockComponent,
+        CustomerDetailComponent,
+        MockEditComponent
+      ],
     })
     .compileComponents();
   }));
@@ -44,15 +57,23 @@ describe('CustomerDetailComponent', () => {
 
   it('should navigate to customers page', fakeAsync(() => {
     router.initialNavigation();
-    router.navigate(['']);
+    router.navigate(['/customers', id]);
+    component.goBack();
     tick();
     expect(location.path()).toBe('/customers');
   }));
 
-  it('should navigate to customers datils page', fakeAsync(() => {
+  it('should navigate to customers details page', fakeAsync(() => {
     router.initialNavigation();
-    router.navigate(['/customers', 3]);
+    router.navigate(['/customers', id]);
     tick();
     expect(location.path()).toBe('/customers/3');
+  }));
+
+  it('should navigate to customers edit page', fakeAsync(() => {
+    router.initialNavigation();
+    component.edit(id);
+    tick();
+    expect(location.path()).toBe('/customers/3/edit');
   }));
 });
