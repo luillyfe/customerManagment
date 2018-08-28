@@ -7,15 +7,24 @@ import {of} from 'rxjs';
 import { CustomerEditComponent } from './customer-edit.component';
 import {CustomerService} from '../customer.service';
 import {ICustomer} from '../customer';
+import {Routes} from '@angular/router';
+import {Component} from '@angular/core';
 
 let mockCustomerS: { save: jasmine.Spy, getCustomer: jasmine.Spy };
 const customer: ICustomer = {
-  customerID: 3, name: { first: '', last: '' },
+  customerID: 1, name: { first: '', last: '' },
   birthday: '',
   gender: '',
   lastContact: '',
   customerLifetimeValue: 0
 };
+
+@Component({ template: '' })
+class MockDetailComponent {}
+
+const routes: Routes = [
+  { path: 'customers/:id', component: MockDetailComponent }
+];
 describe('CustomerEditComponent', () => {
   let component: CustomerEditComponent;
   let fixture: ComponentFixture<CustomerEditComponent>;
@@ -23,8 +32,8 @@ describe('CustomerEditComponent', () => {
   beforeEach(async(() => {
     mockCustomerS = jasmine.createSpyObj('CustomerService', ['save', 'getCustomer']);
     TestBed.configureTestingModule({
-      imports: [FormsModule, RouterTestingModule, HttpClientTestingModule],
-      declarations: [ CustomerEditComponent ],
+      imports: [FormsModule, RouterTestingModule.withRoutes(routes), HttpClientTestingModule],
+      declarations: [ CustomerEditComponent, MockDetailComponent ],
       providers: [{
         provide: CustomerService, useValue: mockCustomerS
       }]
