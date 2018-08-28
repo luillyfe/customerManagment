@@ -25,6 +25,6 @@ export class CustomerService {
   }
 
   save(customer: ICustomer) {
-    return this.http.put(this.customerURl, customer);
+    return this.http.post(this.customerURl, customer);
   }
 }

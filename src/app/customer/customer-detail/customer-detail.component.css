@@ -6,6 +6,7 @@
 
 .card-header {
   border-bottom-color: #87BBA2;
+  display: flex;
 }
 
 .card th {
@@ -28,6 +29,6 @@ span {
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
   .card-header span {
-    margin-right: 90px;
+    margin-right: auto;
   }
 }

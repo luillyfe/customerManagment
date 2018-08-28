@@ -45,6 +45,7 @@ button:disabled, button[disabled] {
 .btn-primary, .btn-primary:hover {
   background-color: #FCFEFC;
   border-color: #87BBA2;
+  color: #2d3c2d;
 }
 
 input:read-only, input[readonly] {

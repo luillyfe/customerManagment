@@ -14,6 +14,13 @@ const fs = require('fs');
 const store = database.ref();
 const customersRef = '-LKwzSI5oSw6pWlOpb-n';
 
+const getCustomerID = () => {
+  customers = store.child(customersRef);
+  return customers.once('value').then(snapshot => {
+    const arry = snapshot.val()
+    return Number(arry[arry.length-1].customerID) +1;
+  });
+};
 
 router.get('/', (req, res) => {
   customers = store.child(customersRef);
@@ -25,7 +32,7 @@ router.get('/', (req, res) => {
   });
 });
 
-router.put('/', (req, res, next) => {
+router.post('/', (req, res, next) => {
   const customer = {
     customerID: req.body.customerID,
     name: req.body.name,
@@ -35,15 +42,29 @@ router.put('/', (req, res, next) => {
     customerLifetimeValue: req.body.customerLifetimeValue
   };
   try {
-    store.child(`${customersRef}/${customer.customerID}`).update(customer);
-    res.send({ message: 'success' });
+    if (customer.customerID == -1) {
+      getCustomerID().then(id => {
+        customer.customerID = id;
+        customer.lastContact = Date.now();
+        store.child(`${customersRef}/${customer.customerID}`)
+          .update(customer, (error, data) => {
+            res.send(data);
+          });
+      });
+    } else {
+      store.child(`${customersRef}/${customer.customerID}`)
+        .update(customer, (error, data) => {
+          res.send(data);
+        });
+    }
   } catch (e) {
     next(e);
   }
 });
 
-router.post('/', (req, res, next) => {
+router.put('/', (req, res, next) => {
   try {
+    // getCustomerID().then(id => res.send({id: id}));
     store.child(customersRef).push(req.body);
   } catch (e) {
     next(e);

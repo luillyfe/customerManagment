@@ -9,6 +9,17 @@
   color: #2d3c2d;
 }
 
+.card .after::after {
+  content: "\002B";
+  margin-left: 1.25rem;
+  position: relative;
+  display: none;
+}
+
+.card:hover .after::after {
+  display: flex;
+}
+
 .card th {
   border-color: #87BBA2;
 }

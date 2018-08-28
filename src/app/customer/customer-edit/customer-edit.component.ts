@@ -16,9 +16,20 @@ export class CustomerEditComponent implements OnInit {
 
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.customerS.getCustomer(id).subscribe(
-      customer => this.customer = customer
-    );
+    if (id === -1) {
+      this.customer = {
+        customerID: -1,
+        name: { first: '', last: '' },
+        birthday: '',
+        gender: '',
+        lastContact: '',
+        customerLifetimeValue: 0
+      };
+    } else {
+      this.customerS.getCustomer(id).subscribe(
+        customer => this.customer = customer
+      );
+    }
   }
 
   save() {
@@ -26,6 +37,11 @@ export class CustomerEditComponent implements OnInit {
       this.customerS.save(this.customer)
         .subscribe(message => {
           console.log(message);
+          if (this.customer.customerID === -1) {
+            this.router.navigate(['customers']);
+          } else {
+            this.router.navigate(['customers', this.customer.customerID]);
+          }
         });
     }
   }
