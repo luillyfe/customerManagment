@@ -9,7 +9,7 @@
   color: #2d3c2d;
 }
 
-.card .after::after {
+/*.card .after::after {
   content: "\002B";
   margin-left: 1.25rem;
   position: relative;
@@ -18,6 +18,18 @@
 
 .card:hover .after::after {
   display: flex;
+}*/
+
+button.after {
+  background-color: #FCFEFC;
+  border-color: #87BBA2;
+  color: #2d3c2d;
+}
+
+button.after:hover {
+  background-color: #87BBA2;
+  border-color: #2d3c2d;
+  color: #FCFEFC;
 }
 
 .card th {
