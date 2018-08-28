@@ -20,13 +20,19 @@ export class CustomerEditComponent implements OnInit {
       this.customer = this.initData();
     } else {
       this.customerS.getCustomer(id).subscribe(
-        customer => this.customer = customer
+        customer => {
+          customer.birthday = this.formatBirthday(customer.birthday);
+          this.customer = customer;
+        }
       );
     }
   }
 
   save() {
     if (this.isValid()) {
+      if (typeof this.customer.birthday !== 'string') {
+        this.customer.birthday = this.formatString(this.customer.birthday);
+      }
       this.customerS.save(this.customer)
         .subscribe(message => {
           console.log(message);
@@ -54,6 +60,15 @@ export class CustomerEditComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  private formatBirthday(birthday: string): any {
+    const date = birthday.split('-');
+    return { year: Number(date[0]), month: Number(date[1]), day: Number(date[2]) };
+  }
+
+  private formatString(birthday: {year: number, month: number, day: number}) {
+    return `${birthday.year}-${birthday.month}-${birthday.day}`;
   }
 
   private initData() {

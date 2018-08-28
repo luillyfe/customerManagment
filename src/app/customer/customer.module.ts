@@ -10,9 +10,11 @@ import { GenderPipe } from './gender.pipe';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { CustomerEditComponent } from './customer-edit/customer-edit.component';
 import {CustomerGuard} from './customer.guard';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
+    NgbModule,
     CommonModule,
     HttpClientModule,
     FormsModule,
