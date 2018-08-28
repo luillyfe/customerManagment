@@ -9,7 +9,8 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class CustomerService {
-  private customerURl = 'assets/customers.json';
+  // private customerURl = 'assets/customers.json';
+  private customerURl = 'api';
 
   constructor(private http: HttpClient) { }
 
@@ -23,7 +24,7 @@ export class CustomerService {
     );
   }
 
-  save(id: number) {
-    return of('success');
+  save(customer: ICustomer) {
+    return this.http.put(this.customerURl, customer);
   }
 }

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CustomerService} from '../customer.service';
 import {ICustomer} from '../customer';
 
@@ -11,7 +11,8 @@ export class CustomerEditComponent implements OnInit {
   customer: ICustomer;
 
   constructor(private route: ActivatedRoute,
-              private customerS: CustomerService) { }
+              private customerS: CustomerService,
+              private router: Router) { }
 
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -22,11 +23,15 @@ export class CustomerEditComponent implements OnInit {
 
   save() {
     if (this.isValid()) {
-      this.customerS.save(this.customer.customerID)
+      this.customerS.save(this.customer)
         .subscribe(message => {
           console.log(message);
         });
     }
+  }
+
+  cancel() {
+    this.router.navigate(['customers', this.customer.customerID]);
   }
 
   isValid() {

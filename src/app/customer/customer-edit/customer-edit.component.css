@@ -4,6 +4,14 @@
   color: #2d3c2d;
 }
 
+.card-footer {
+  display: flex;
+}
+
+.card-footer button:last-child {
+  margin-left: auto;
+}
+
 input {
   border-color: #87BBA2;
 }
@@ -32,6 +40,11 @@ button:disabled, button[disabled] {
   border: 1px solid #2d3c2d;
   background-color: #2d3c2d;
   color: #FCFEFC;
+}
+
+.btn-primary, .btn-primary:hover {
+  background-color: #FCFEFC;
+  border-color: #87BBA2;
 }
 
 input:read-only, input[readonly] {

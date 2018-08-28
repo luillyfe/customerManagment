@@ -48,6 +48,7 @@
     </form>
   </div>
   <div class="card-footer">
+    <button class="btn btn-primary" type="button" (click)="cancel()">Cancel</button>
     <button class="btn btn-primary" type="button" (click)="save()" [disabled]="!isValid()">Save</button>
   </div>
 </div>
