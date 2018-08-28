@@ -47,7 +47,11 @@ export class CustomerEditComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['customers', this.customer.customerID]);
+    if (this.customer.customerID === -1) {
+      this.router.navigate(['customers']);
+    } else {
+      this.router.navigate(['customers', this.customer.customerID]);
+    }
   }
 
   isValid() {

@@ -42,8 +42,10 @@ span {
   color: #2d3c2d;
 }
 
+.card-header span {
+  margin-right: auto;
+}
+
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-  .card-header span {
-    margin-right: auto;
-  }
+
 }

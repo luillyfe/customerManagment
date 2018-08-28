@@ -27,6 +27,7 @@
 .card a {
   color: #2d3c2d;
   cursor: pointer;
+  display: block;
 }
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
