@@ -11,9 +11,21 @@ Single Page Application for custom managment.
 - ####Customer detail page
 - Edit and remove profile data
 
+## Install
+
+`npm i` or `yarn install`.
+
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `ng build --prod` to build the project.
+
+## Run the project
+
+After the build you should be able to run the project, `npm start or yarn start`
+
+## Continuos integration
+
+Each push to the source code triggers a build on CircleCI, check the build [here](https://circleci.com/gh/luillyfe/customerManagment).
 
 ## Running unit tests
 

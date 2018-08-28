@@ -30,4 +30,12 @@ export class CustomerDetailComponent implements OnInit {
     this.router.navigate(['customers', id, 'edit']);
   }
 
+  delete() {
+    this.customerS.delete(this.customer.customerID).subscribe(
+      message => {
+        console.log(message);
+        this.router.navigate(['customers']);
+      }
+    );
+  }
 }
