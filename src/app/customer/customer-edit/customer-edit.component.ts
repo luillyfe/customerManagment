@@ -17,14 +17,7 @@ export class CustomerEditComponent implements OnInit {
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (id === -1) {
-      this.customer = {
-        customerID: -1,
-        name: { first: '', last: '' },
-        birthday: '',
-        gender: '',
-        lastContact: '',
-        customerLifetimeValue: 0
-      };
+      this.customer = this.initData();
     } else {
       this.customerS.getCustomer(id).subscribe(
         customer => this.customer = customer
@@ -60,6 +53,18 @@ export class CustomerEditComponent implements OnInit {
       return true;
     } else {
       return false;
-    }}
+    }
+  }
+
+  private initData() {
+    return {
+      customerID: -1,
+      name: { first: '', last: '' },
+      birthday: '',
+      gender: 'm',
+      lastContact: '',
+      customerLifetimeValue: 0
+    };
+  }
 
 }
