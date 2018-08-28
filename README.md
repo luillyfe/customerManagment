@@ -8,12 +8,12 @@ Single Page Application for custom managment.
 - Add new customer
 - Link to edit a new customer (Customer-detail page)
 - Delete a customer
-- ####Customer detail page
+- ##Customer detail page
 - Edit and remove profile data
 
 ## Install
 
-`npm i` or `yarn install`.
+run this commmands `npm i` or `yarn install`.
 
 ## Build
 
