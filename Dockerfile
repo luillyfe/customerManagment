@@ -1,7 +1,7 @@
 FROM node:8
 WORKDIR /usr/src/app
 LABEL author="Fermin Blanco"
-COPY package*.json angular.json ./
+COPY ./dist package*.json angular.json ./
 RUN npm install
 RUN npm i -g @angular/cli
 COPY . .

@@ -42,7 +42,7 @@ jobs:
           docker build -t luillyfe.azurecr.io/luillyfe:1.7 .
     - run:
         command: |
-          docker login -t --username $DOCKER_USER --password $DOCKER_PASS luillyfe.azurecr.io
+          docker login --username $DOCKER_USER --password $DOCKER_PASS luillyfe.azurecr.io
     - run:
         command: |
-          docker push -t luillyfe.azurecr.io/luillyfe:1.7
+          docker push luillyfe.azurecr.io/luillyfe:1.7
