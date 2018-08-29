@@ -1,5 +1,10 @@
-FROM nginx:alpine
+FROM node:8
+WORKDIR /usr/src/app
 LABEL author="Fermin Blanco"
-COPY ./dist /usr/share/nginx/html
-EXPOSE 80 443
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+COPY package*.json angular.json ./
+RUN npm install
+RUN npm i -g @angular/cli
+RUN ng build --prod
+COPY . .
+EXPOSE 8080
+CMD [ "npm", "start" ]

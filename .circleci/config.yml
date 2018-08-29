@@ -18,6 +18,7 @@ jobs:
 
     steps:
     - checkout
+    - setup_remote_docker
 
     # Download and cache dependencies
     - restore_cache:
@@ -36,3 +37,15 @@ jobs:
     # run tests!
     - run: yarn ng build --prod
     - run: yarn ng test --single-run
+
+    - run:
+        command: |
+          docker build -t luillyfe.azurecr.io/luillyfe:1.7 .
+
+    - run:
+        command: |
+          docker login -t --username $DOCKER_USER --password $DOCKER_PASS luillyfe.azurecr.io
+
+    - run:
+        command: |
+          docker push -t luillyfe.azurecr.io/luillyfe:1.7
