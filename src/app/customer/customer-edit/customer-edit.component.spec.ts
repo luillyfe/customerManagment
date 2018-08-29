@@ -2,18 +2,19 @@ import {async, ComponentFixture, fakeAsync, inject, TestBed, tick} from '@angula
 import {FormsModule} from '@angular/forms';
 import {RouterTestingModule} from '@angular/router/testing';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {of} from 'rxjs';
+import {Observable, of} from 'rxjs';
 
 import { CustomerEditComponent } from './customer-edit.component';
 import {CustomerService} from '../customer.service';
 import {ICustomer} from '../customer';
 import {Routes} from '@angular/router';
-import {Component} from '@angular/core';
+import {Component, Injectable} from '@angular/core';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
-let mockCustomerS: { save: jasmine.Spy, getCustomer: jasmine.Spy };
+let mockCustomerS: { save: jasmine.Spy, getCustomer: jasmine.Spy, formatBirthday: jasmine.Spy };
 const customer: ICustomer = {
   customerID: 1, name: { first: '', last: '' },
-  birthday: '',
+  birthday: '1996-02-02',
   gender: '',
   lastContact: '',
   customerLifetimeValue: 0
@@ -30,9 +31,9 @@ describe('CustomerEditComponent', () => {
   let fixture: ComponentFixture<CustomerEditComponent>;
 
   beforeEach(async(() => {
-    mockCustomerS = jasmine.createSpyObj('CustomerService', ['save', 'getCustomer']);
+    mockCustomerS = jasmine.createSpyObj('CustomerService', ['save', 'getCustomer', 'formatBirthday']);
     TestBed.configureTestingModule({
-      imports: [FormsModule, RouterTestingModule.withRoutes(routes), HttpClientTestingModule],
+      imports: [NgbModule, FormsModule, RouterTestingModule.withRoutes(routes), HttpClientTestingModule],
       declarations: [ CustomerEditComponent, MockDetailComponent ],
       providers: [{
         provide: CustomerService, useValue: mockCustomerS
@@ -46,6 +47,7 @@ describe('CustomerEditComponent', () => {
     mockCustomerS.save.and.returnValue(of('success'));
     fixture = TestBed.createComponent(CustomerEditComponent);
     component = fixture.componentInstance;
+    spyOn<any>(component, 'formatBirthday').and.returnValue({});
     fixture.detectChanges();
   });
 

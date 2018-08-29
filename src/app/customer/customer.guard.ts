@@ -3,7 +3,6 @@ import {ActivatedRouteSnapshot, RouterStateSnapshot, Resolve, ActivatedRoute} fr
 import { Observable } from 'rxjs';
 import {CustomerService} from './customer.service';
 import {ICustomer} from './customer';
-import {tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
