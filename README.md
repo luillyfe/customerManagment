@@ -27,6 +27,10 @@ After the build you should be able to run the project, `npm start or yarn start`
 
 Each push to the source code triggers a build on CircleCI, check the build [here](https://circleci.com/gh/luillyfe/customerManagment).
 
+## Continuos deployment
+
+Each CircleCI build triggers a deployment on Microsoft Azure, check [here](https://customer-managment3.azurewebsites.net/customers). 
+
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
