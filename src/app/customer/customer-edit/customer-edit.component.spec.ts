@@ -69,11 +69,4 @@ describe('CustomerEditComponent', () => {
       expect(mockCustomerS.save).not.toHaveBeenCalled();
     }));
   });
-
-  xdescribe('validate the form', () => {
-    it('if there is not name, should invlidate the', () => {
-
-    });
-  });
-
 });
