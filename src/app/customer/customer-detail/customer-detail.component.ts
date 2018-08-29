@@ -16,10 +16,9 @@ export class CustomerDetailComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.customerS.getCustomer(id).subscribe(
-      customer => this.customer = customer
-    );
+    this.route.data.subscribe(data => {
+      this.customer = data.customer;
+    });
   }
 
   goBack() {
@@ -30,4 +29,12 @@ export class CustomerDetailComponent implements OnInit {
     this.router.navigate(['customers', id, 'edit']);
   }
 
+  delete() {
+    this.customerS.delete(this.customer.customerID).subscribe(
+      message => {
+        console.log(message);
+        this.router.navigate(['customers']);
+      }
+    );
+  }
 }

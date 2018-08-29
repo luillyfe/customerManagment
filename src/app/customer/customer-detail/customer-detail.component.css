@@ -9,6 +9,17 @@
   display: flex;
 }
 
+.card-footer {
+  display: flex;
+}
+
+.card-footer button:last-child {
+  display: flex;
+  margin-left: auto;
+  border-color: #9D5A59;
+  color: #9D5A59;
+}
+
 .card th {
   border-color: #87BBA2;
 }
@@ -17,6 +28,9 @@
   border-top-color: #87BBA2;
 }
 
+.card-footer button.focus:last-child, .card-footer button:last-child:focus {
+  box-shadow: 0 0 0 0.2rem rgba(167, 104, 40, 0.5)
+}
 span {
   display: inline-block;
   min-width: 100px;
@@ -24,11 +38,14 @@ span {
 
 .btn-outline-success {
   border-color: #87BBA2;
+  background-color: #fff;
   color: #2d3c2d;
 }
 
+.card-header span {
+  margin-right: auto;
+}
+
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-  .card-header span {
-    margin-right: auto;
-  }
+
 }

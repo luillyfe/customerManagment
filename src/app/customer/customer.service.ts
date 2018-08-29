@@ -12,7 +12,8 @@ export class CustomerService {
   // private customerURl = 'assets/customers.json';
   private customerURl = 'api';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getCustomers(): Observable<ICustomer[]> {
     return this.http.get<ICustomer[]>(this.customerURl);
@@ -25,6 +26,16 @@ export class CustomerService {
   }
 
   save(customer: ICustomer) {
-    return this.http.post(this.customerURl, customer);
+    if (customer.customerID === -1) {
+      return this.http.post(this.customerURl, customer);
+    } else {
+      return this.http.put(this.customerURl, customer);
+    }
+  }
+
+  delete(id: number) {
+    console.log(id);
+    const url = `${this.customerURl}/${id}`;
+    return this.http.delete(url);
   }
 }

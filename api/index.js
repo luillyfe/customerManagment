@@ -22,6 +22,17 @@ const getCustomerID = () => {
   });
 };
 
+const formatData = data => {
+  return {
+    customerID: data.customerID,
+    name: data.name,
+    birthday: data.birthday,
+    gender: data.gender,
+    lastContact: data.lastContact,
+    customerLifetimeValue: data.customerLifetimeValue
+  };
+};
+
 router.get('/', (req, res) => {
   customers = store.child(customersRef);
   customers.once('value').then(snapshot => {
@@ -32,43 +43,42 @@ router.get('/', (req, res) => {
   });
 });
 
-router.post('/', (req, res, next) => {
-  const customer = {
-    customerID: req.body.customerID,
-    name: req.body.name,
-    birthday: req.body.birthday,
-    gender: req.body.gender,
-    lastContact: req.body.lastContact,
-    customerLifetimeValue: req.body.customerLifetimeValue
-  };
+router.put('/', (req, res, next) => {
+  const customer = formatData(req.body);
   try {
-    if (customer.customerID == -1) {
-      getCustomerID().then(id => {
-        customer.customerID = id;
-        customer.lastContact = Date.now();
-        store.child(`${customersRef}/${customer.customerID}`)
-          .update(customer, (error, data) => {
-            res.send(data);
-          });
+    store.child(`${customersRef}/${customer.customerID}`)
+      .update(customer, (error, data) => {
+        res.send(data);
       });
-    } else {
-      store.child(`${customersRef}/${customer.customerID}`)
-        .update(customer, (error, data) => {
-          res.send(data);
-        });
-    }
   } catch (e) {
     next(e);
   }
 });
 
-router.put('/', (req, res, next) => {
+router.post('/', (req, res, next) => {
+  const customer = formatData(req.body);
   try {
-    // getCustomerID().then(id => res.send({id: id}));
-    store.child(customersRef).push(req.body);
+    // store.child(customersRef).push(req.body);
+    getCustomerID().then(id => {
+      customer.customerID = id;
+      customer.lastContact = Date.now();
+      store.child(`${customersRef}/${customer.customerID}`)
+        .update(customer, (error, data) => {
+          res.send(data);
+        });
+    });
   } catch (e) {
     next(e);
   }
+});
+
+router.delete('/:id', (req, res) => {
+  const id = req.params.id
+  store.child(`${customersRef}/${id}`)
+    .set(null)
+    .then(msg => {
+      res.send({message: "deleted"});
+    });
 });
 
 module.exports = router;

@@ -17,23 +17,22 @@ export class CustomerEditComponent implements OnInit {
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (id === -1) {
-      this.customer = {
-        customerID: -1,
-        name: { first: '', last: '' },
-        birthday: '',
-        gender: '',
-        lastContact: '',
-        customerLifetimeValue: 0
-      };
+      this.customer = this.initData();
     } else {
       this.customerS.getCustomer(id).subscribe(
-        customer => this.customer = customer
+        customer => {
+          customer.birthday = this.formatBirthday(customer.birthday);
+          this.customer = customer;
+        }
       );
     }
   }
 
   save() {
     if (this.isValid()) {
+      if (typeof this.customer.birthday !== 'string') {
+        this.customer.birthday = this.formatString(this.customer.birthday);
+      }
       this.customerS.save(this.customer)
         .subscribe(message => {
           console.log(message);
@@ -47,7 +46,11 @@ export class CustomerEditComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['customers', this.customer.customerID]);
+    if (this.customer.customerID === -1) {
+      this.router.navigate(['customers']);
+    } else {
+      this.router.navigate(['customers', this.customer.customerID]);
+    }
   }
 
   isValid() {
@@ -56,6 +59,27 @@ export class CustomerEditComponent implements OnInit {
       return true;
     } else {
       return false;
-    }}
+    }
+  }
+
+  private formatBirthday(birthday: string): any {
+    const date = birthday.split('-');
+    return { year: Number(date[0]), month: Number(date[1]), day: Number(date[2]) };
+  }
+
+  private formatString(birthday: {year: number, month: number, day: number}) {
+    return `${birthday.year}-${birthday.month}-${birthday.day}`;
+  }
+
+  private initData() {
+    return {
+      customerID: -1,
+      name: { first: '', last: '' },
+      birthday: '',
+      gender: 'm',
+      lastContact: '',
+      customerLifetimeValue: 0
+    };
+  }
 
 }

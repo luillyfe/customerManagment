@@ -28,8 +28,9 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="birthday">Birthday</label> <!-- TODO: make date input -->
-        <input type="text" [(ngModel)]="customer.birthday" name="birthday" class="form-control" id="birthday" aria-describedby="birthday" placeholder="Enter birthday">
+        <label for="birthday">Birthday</label>
+        <input type="text" [(ngModel)]="customer.birthday" ngbDatepicker #d="ngbDatepicker" #m="ngModel" (click)="d.toggle()"
+               name="birthday" class="form-control" id="birthday" aria-describedby="birthday" placeholder="Enter birthday"/>
       </div>
       <div class="form-group">
         <label for="gender">Gender</label> <!-- TODO: make radio input -->
@@ -42,8 +43,7 @@
       <div class="form-group">
         <label for="customerLifetimeValue">Life time value</label>
         <input type="text" [(ngModel)]="customer.customerLifetimeValue" name="customerLifetimeValue" class="form-control"
-               id="customerLifetimeValue" aria-describedby="customerLifetimeValue" placeholder="Enter life time value"
-        readonly>
+               id="customerLifetimeValue" aria-describedby="customerLifetimeValue" placeholder="Enter life time value">
       </div>
     </form>
   </div>
@@ -51,4 +51,5 @@
     <button class="btn btn-primary" type="button" (click)="cancel()">Cancel</button>
     <button class="btn btn-primary" type="button" (click)="save()" [disabled]="!isValid()">Save</button>
   </div>
+
 </div>
