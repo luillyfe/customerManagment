@@ -39,10 +39,10 @@ jobs:
     - run: yarn ng test --watch=false
     - run:
         command: |
-          docker build -t luillyfe.azurecr.io/luillyfe:1.6 .
+          docker build -t luillyfe.azurecr.io/luillyfe/luillyfe:1.8 .
     - run:
         command: |
           docker login --username $DOCKER_USER --password $DOCKER_PASS luillyfe.azurecr.io
     - run:
         command: |
-          docker push luillyfe.azurecr.io/luillyfe:1.6
+          docker push luillyfe.azurecr.io/luillyfe/luillyfe:1.8

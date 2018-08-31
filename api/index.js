@@ -17,7 +17,7 @@ const customersRef = '-LKwzSI5oSw6pWlOpb-n';
 const getCustomerID = () => {
   customers = store.child(customersRef);
   return customers.once('value').then(snapshot => {
-    const arry = snapshot.val()
+    const arry = snapshot.val();
     return Number(arry[arry.length-1].customerID) +1;
   });
 };
@@ -37,9 +37,10 @@ router.get('/', (req, res) => {
   customers = store.child(customersRef);
   customers.once('value').then(snapshot => {
     const customers = snapshot.val()
-        .filter(val => val !== null)
-        .map(obj => obj);
-    res.send(Array.from(customers));
+        .filter(val => val !== 0);
+    res.send(customers);
+    }, err => {
+      throw new Error(`Something was wrong, try later`);
   });
 });
 
@@ -47,7 +48,11 @@ router.put('/', (req, res, next) => {
   const customer = formatData(req.body);
   try {
     store.child(`${customersRef}/${customer.customerID}`)
-      .update(customer, (error, data) => {
+      .update(customer, (err, data) => {
+        if (err) {
+          res.status(500);
+          res.render('error', { error: 'Something was wrong proccesing your request.' })
+        }
         res.send(data);
       });
   } catch (e) {
@@ -57,19 +62,19 @@ router.put('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   const customer = formatData(req.body);
-  try {
-    // store.child(customersRef).push(req.body);
-    getCustomerID().then(id => {
-      customer.customerID = id;
-      customer.lastContact = Date.now();
-      store.child(`${customersRef}/${customer.customerID}`)
-        .update(customer, (error, data) => {
-          res.send(data);
-        });
-    });
-  } catch (e) {
-    next(e);
-  }
+
+  getCustomerID().then(id => {
+    customer.customerID = id;
+    customer.lastContact = Date.now();
+    store.child(`${customersRef}/${customer.customerID}`)
+      .update(customer, (err, data) => {
+        if (err) {
+          res.status(500);
+          res.render('error', { error: 'Something was wrong proccesing your request.' })
+        }
+        res.send();
+      });
+  }).catch(next);
 });
 
 router.delete('/:id', (req, res) => {
@@ -77,7 +82,7 @@ router.delete('/:id', (req, res) => {
   store.child(`${customersRef}/${id}`)
     .set(null)
     .then(msg => {
-      res.send({message: "deleted"});
+      res.send({message: `Customer with id ${id} was deleted succesfull`});
     });
 });
 

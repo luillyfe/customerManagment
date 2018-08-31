@@ -10,7 +10,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class CustomerService {
   // private customerURl = 'assets/customers.json';
-  private customerURl = 'api';
+  private customerURl = 'api/customers';
 
   constructor(private http: HttpClient) {
   }

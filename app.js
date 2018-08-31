@@ -9,6 +9,6 @@ app.use(express.static(`${__dirname}/${dirProd}`));
 app.use('/customers', express.static(`${__dirname}/${dirProd}`));
 app.use('/customers/:id', express.static(`${__dirname}/${dirProd}`));
 app.use('/customers/:id/edit', express.static(`${__dirname}/${dirProd}`));
-app.use('/api', api);
+app.use('/api/customers', api);
 
 module.exports = app;

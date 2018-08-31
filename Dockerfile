@@ -1,9 +1,8 @@
 FROM node:8
-WORKDIR /usr/src/app
+WORKDIR /Users/ferminblanco/WebstormProjects/customManagmnet
 LABEL author="Fermin Blanco"
-COPY ./dist package*.json angular.json ./
+COPY . .
 RUN npm install
 RUN npm i -g @angular/cli
-COPY . .
-EXPOSE 8080
+EXPOSE 80
 CMD [ "npm", "start" ]
