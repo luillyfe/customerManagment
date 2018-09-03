@@ -1,7 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import {RouterTestingModule} from '@angular/router/testing';
-const title = 'Customers Manager 3';
+const title = 'Customers Manager 4';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
