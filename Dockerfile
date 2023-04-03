@@ -1,4 +1,4 @@
-FROM circleci/node:latest
+FROM cimg/node:latest
 WORKDIR /usr/shared/app
 LABEL author="Fermin Blanco"
 COPY package.json /usr/shared/app/
