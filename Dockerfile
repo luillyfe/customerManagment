@@ -1,4 +1,4 @@
-FROM node:latest
+FROM cimg/node
 WORKDIR /usr/shared/app
 LABEL author="Fermin Blanco"
 COPY package*.json /usr/shared/app/
