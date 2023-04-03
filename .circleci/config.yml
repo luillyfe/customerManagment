@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
     # specify the version you desire here
-    - image: circleci/node:8-browsers
+    - image: cimg/node:latest
 
     # Specify service dependencies here if necessary
     # CircleCI maintains a library of pre-built images
@@ -35,14 +35,14 @@ jobs:
         key: v1-dependencies-{{ checksum "package.json" }}
 
     # run tests!
-    - run: yarn ng build --prod
+    - run: yarn ng build
     - run: yarn ng test --watch=false
-    - run:
-        command: |
-          docker build -t luillyfe.azurecr.io/luillyfe/luillyfe:1.8 .
-    - run:
-        command: |
-          docker login --username $DOCKER_USER --password $DOCKER_PASS luillyfe.azurecr.io
-    - run:
-        command: |
-          docker push luillyfe.azurecr.io/luillyfe/luillyfe:1.8
+    # - run:
+    #     command: |
+    #       docker build -t luillyfe.azurecr.io/luillyfe/luillyfe:1.8 .
+    # - run:
+    #     command: |
+    #       docker login --username $DOCKER_USER --password $DOCKER_PASS luillyfe.azurecr.io
+    # - run:
+    #     command: |
+    #       docker push luillyfe.azurecr.io/luillyfe/luillyfe:1.8
