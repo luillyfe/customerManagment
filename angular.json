@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "customManagmnet"
+  "defaultProject": "customManagmnet",
+  "cli": {
+    "analytics": "269ab595-6208-41b4-80b7-afb73904dffb"
+  }
 }
