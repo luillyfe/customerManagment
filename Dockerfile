@@ -1,4 +1,4 @@
-FROM node:8
+FROM node:latest
 WORKDIR /usr/shared/app
 LABEL author="Fermin Blanco"
 COPY package*.json /usr/shared/app/
