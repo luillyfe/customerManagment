@@ -17,7 +17,7 @@ run this commmands `npm i` or `yarn install`.
 
 ## Build
 
-Run `ng build --prod` to build the project.
+Run `ng build` to build the project.
 
 ## Run the project
 
