@@ -1,7 +1,7 @@
-FROM cimg/node
+FROM circleci/node:latest
 WORKDIR /usr/shared/app
 LABEL author="Fermin Blanco"
-COPY package*.json /usr/shared/app/
+COPY package.json /usr/shared/app/
 RUN npm install --production
 COPY . /usr/shared/app
 EXPOSE 80
